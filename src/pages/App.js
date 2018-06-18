@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation';
 
 import { LoginScreen } from './LoginScreen.js'
 import { OLoginScreen } from './OLoginScreen.js'
+import { ShowImageScreen } from './ShowImageScreen.js'
 
 export class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -27,6 +28,14 @@ export class HomeScreen extends React.Component {
           underlayColor='#000' >
             <Text style={ styles.buttonText }>[2nd day] Oanh Login screen</Text>
         </TouchableHighlight>
+
+        <TouchableHighlight
+          ref={(btnLogin) => { this.btnLogin = btnLogin; }}
+          style={ styles.button }
+          onPress={ () => this.props.navigation.navigate('ShowImage', {title: 'Login screen'}) }
+          underlayColor='#000' >
+            <Text style={ styles.buttonText }>[2nd day] Duy Show Image screen</Text>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -43,6 +52,7 @@ const RootStack = createStackNavigator(
     Home: HomeScreen,
     Login: LoginScreen,
     OLogin: OLoginScreen,
+    ShowImage: ShowImageScreen,
   },
   {
     initialRouteName: 'Home',
