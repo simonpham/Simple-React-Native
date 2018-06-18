@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, Image } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Image, Button } from 'react-native';
 import { Header } from 'react-native-elements'
 
 export default class ProfileScreen extends React.Component {
@@ -10,11 +10,11 @@ export default class ProfileScreen extends React.Component {
     _onAvtButtonPressed() {
        
     }
-    _onEditButtonPressed() {
-        this.setState({isEdittable:true})
+    _onExitButtonPressed() {
+
     }
     _onSaveButtonPressed() {
-        this.setState({isEdittable:false})
+
     }
     render() {
         return (
@@ -22,7 +22,7 @@ export default class ProfileScreen extends React.Component {
                 <Header
                     centerComponent = {{
                       text : 'PROFILE', 
-                      style : {color : '#fff', fontSize : 20, fontWeight : 'bold'}
+                      style : {color : '#fff', fontSize : 15, fontWeight : 'bold'}
                     }}
                 />
                 <View style = {styles.avtcontainer}>
@@ -33,8 +33,20 @@ export default class ProfileScreen extends React.Component {
                 <Info name = 'Email'/>
                 <Info name = 'Phone'/>
                 <View style = {styles.buttoncontainer}>
-                    <Button style = {{margin : 15, flex : 1}} title = 'Edit' onPress = {this._onEditButtonPressed.bind(this)}/>
-                    <Button style = {{margin : 15, flex : 1}} title = 'Save' onPress = {this._onSaveButtonPressed.bind(this)}/>
+                    <View style = {{
+                        alignItems : 'stretch',
+                        flexDirection: 'column',
+                        flex : 1,
+                        padding : 5}}>
+                        <Button title = 'Exit' onPress = {this._onExitButtonPressed}/>
+                    </View>   
+                    <View style = {{
+                        alignItems : 'stretch',
+                        flexDirection: 'column',
+                        flex : 1,
+                        padding : 5}}> 
+                        <Button title = 'Save' onPress = {this._onSaveButtonPressed}/>
+                    </View>
                 </View>
             </View>
         )
@@ -44,16 +56,17 @@ export default class ProfileScreen extends React.Component {
 class Info extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {text : ''}
+        this.state = {
+            text : ''
+        }
     }
     render() {
         return (
             <View style = {styles.infocontainer}>
-                <Text style ={{fontSize : 15}}> {this.props.name} </Text>
-                <View style = {{padding : 10, borderColor : '#000000', borderWidth : 1}}>
+                <Text style ={{fontSize : 15, flex : 1}}> {this.props.name} </Text>
+                <View style = {{flex : 4, padding : 5, borderColor : '#000000', borderWidth : 1}}>
                     <TextInput
                         style = {{fontSize : 15}}
-                        editable = {this.state.isEdittable}
                         underlineColorAndroid = 'transparent'
                         onChangeText = {(text) => this.setState({text})}
                         value = {this.state.text}
@@ -72,13 +85,13 @@ const styles = StyleSheet.create(
             padding : 10
         },
         infocontainer: {
-            flexDirection : 'column',
+            flexDirection : 'row',
+            alignItems : 'center',
             padding : 5
         },
         buttoncontainer: {
-            justifyContent: 'space-around',
             flexDirection: 'row',
-            padding : 20
+            justifyContent : 'center'
         },
         img: {
             width: 120,
