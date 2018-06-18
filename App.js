@@ -12,7 +12,7 @@ export class HomeScreen extends React.Component {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Button
-          title="Go to Login screen"
+          title="Go to Simon's Login screen"
           onPress={() => this.props.navigation.navigate('Login', {title: 'Login screen'})}
         />
       </View>
@@ -54,11 +54,31 @@ export class LoginScreen extends React.Component {
         }}
         source={{ uri: bgImage }}
       >
-        <View style={styles.overlay}></View>
-        <View style={styles.container}>
-          <View style={styles.buttonContainer}>
+        <View style={{
+            backgroundColor:'#000000',
+            opacity: .5,
+            flex: 1,
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            justifyContent: 'center',
+        }}></View>
+        <View style={{
+          flex: 1,
+          justifyContent: 'center',
+        }}>
+          <View style={{
+            margin: 20,
+          }}>
             <TextInput
-              style={styles.editText}
+              style={{
+                height: 60,
+                paddingLeft: 10,
+                paddingRight: 10,
+                marginLeft: 10,
+                marginRight: 10,
+                color: "#ffffff"
+              }}
               placeholderTextColor={'#ffffff'}
               underlineColorAndroid={'#ff5722'}
               returnKeyType={'next'}
@@ -68,7 +88,14 @@ export class LoginScreen extends React.Component {
             />
             <TextInput
               ref={(input) => { this.tiPassword = input; }}
-              style={styles.editText}
+              style={{
+                height: 60,
+                paddingLeft: 10,
+                paddingRight: 10,
+                marginLeft: 10,
+                marginRight: 10,
+                color: "#ffffff"
+              }}
               placeholderTextColor={'#ffffff'}
               underlineColorAndroid={'#ff5722'}
               secureTextEntry={true}
@@ -76,13 +103,25 @@ export class LoginScreen extends React.Component {
               onChangeText={(password) => this.setState({password})}
             />
           </View>
-          <View style={styles.buttonContainer}>
+          <View style={{
+            margin: 20,
+          }}>
             <TouchableHighlight
               ref={(btnLogin) => { this.btnLogin = btnLogin; }}
-              style={styles.login}
+              style={{
+                paddingTop:15,
+                paddingBottom:15,
+                backgroundColor:'#ff5722',
+                borderRadius:25,
+                borderWidth: 1,
+                borderColor: '#00000000'
+              }}
               onPress={this._onLoginPressed.bind(this)}
               underlayColor='#000' >
-                <Text style={[styles.loginText]}>Login</Text>
+                <Text style={{
+                    color:'#fff',
+                    textAlign:'center',
+                }}>Login</Text>
             </TouchableHighlight>
           </View>
         </View>
@@ -90,52 +129,6 @@ export class LoginScreen extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  overlay: {
-      backgroundColor:'#000000',
-      opacity: .5,
-      flex: 1,
-      position: 'absolute',
-      width: '100%',
-      height: '100%',
-      justifyContent: 'center',
-  },
-  editText: {
-    height: 60,
-    paddingLeft: 10,
-    paddingRight: 10,
-    marginLeft: 10,
-    marginRight: 10,
-    color: "#ffffff",
-  },
-  buttonContainer: {
-    margin: 20,
-  },
-  alternativeLayoutButtonContainer: {
-    margin: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  login:{
-    paddingTop:15,
-    paddingBottom:15,
-    backgroundColor:'#ff5722',
-    borderRadius:25,
-    borderWidth: 1,
-    borderColor: '#00000000',
-  },
-  loginText:{
-      color:'#fff',
-      textAlign:'center',
-  },
-});
 
 export default class App extends React.Component {
   render() {
