@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button, ImageBackground, TouchableHighlight, Al
 import { createStackNavigator } from 'react-navigation';
 
 import { LoginScreen } from './LoginScreen.js'
+import { OLoginScreen } from './OLoginScreen.js'
 
 export class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -17,6 +18,14 @@ export class HomeScreen extends React.Component {
           onPress={ () => this.props.navigation.navigate('Login', {title: 'Login screen'}) }
           underlayColor='#000' >
             <Text style={ styles.buttonText }>[1st day] Simon login screen</Text>
+        </TouchableHighlight>
+
+        <TouchableHighlight
+          ref={(btnLogin) => { this.btnLogin = btnLogin; }}
+          style={ styles.button }
+          onPress={ () => this.props.navigation.navigate('OLogin', {title: 'Login screen'}) }
+          underlayColor='#000' >
+            <Text style={ styles.buttonText }>[2nd day] Oanh Login screen</Text>
         </TouchableHighlight>
       </View>
     );
@@ -33,6 +42,7 @@ const RootStack = createStackNavigator(
   {
     Home: HomeScreen,
     Login: LoginScreen,
+    OLogin: OLoginScreen,
   },
   {
     initialRouteName: 'Home',
@@ -47,8 +57,6 @@ const RootStack = createStackNavigator(
     },
   }
 );
-
-
 
 const styles = StyleSheet.create({
   container: {
