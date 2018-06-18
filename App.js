@@ -1,24 +1,59 @@
-import React, { Component } from 'react';
-import { AppRegistry, Text, TextInput, View } from 'react-native';
+import React, {Component} from 'react';
+import { AppRegistry, StyleSheet, Text, TextInput, View, Image, TouchableOpacity, Button } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
-export default class PizzaTranslator extends Component {
+class PizzaTranslator extends Component {
   constructor(props) {
     super(props);
     this.state = {text: 'http://facebook.github.io/react-native/img/favicon.png'};
   }
+}
 
-  export default class App extends React.Component {
+class App extends Component {
+	 
+  static navigationOptions = 
+  {
+	  title: 'Image',
+  };
+  OpenSecondActivityFunction = () =>
+  {
+	  this.props.navigation.navigate('Second');
+  }
+  
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.button} onPress={()=>{alert("you clicked me")}}>
-          <Image source={{uri: "http://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-        </TouchableOpacity>
+        <Button onPress={ this.OpenSecondActivityFunction } title = 'Click me'/>
+          
+      
         <Text>We are just getting started</Text>
       </View>
     );
   }
 }
+
+class second extends Component
+{
+	static navigationOptions = 
+	{
+		title: 'Display Image',
+	};
+	
+	render()
+	{
+		return(
+		<View style = {styles.container}>
+			<Image source={{uri: "http://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+		</View>
+		);
+	}
+}
+
+export default Hi = StackNavigator(
+{
+	First: { screen: App },
+	Second: {screen: second }
+});
 
 const styles = StyleSheet.create({
   container: {
