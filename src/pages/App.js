@@ -32,7 +32,7 @@ export class HomeScreen extends React.Component {
         <TouchableHighlight
           ref={(btnLogin) => { this.btnLogin = btnLogin; }}
           style={ styles.button }
-          onPress={ () => this.props.navigation.navigate('ShowImage', {title: 'Login screen'}) }
+          onPress={ () => this.props.navigation.navigate('ShowImage', {title: 'Show image screen'}) }
           underlayColor='#000' >
             <Text style={ styles.buttonText }>[2nd day] Duy Show Image screen</Text>
         </TouchableHighlight>

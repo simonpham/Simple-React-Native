@@ -1,99 +1,94 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, ImageBackground, TouchableHighlight, Alert, TextInput } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Image, TouchableOpacity, Button, WebView } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
 
-export class ShowImageScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Login',
-  };
+export class FirstScreen extends React.Component {
+  //constructor(props) {
+    //super(props);
+    //this.state = {text: 'Type the image URL'};
+  //}
+  state = {text: ''};
 
-  constructor(props) {
-    super(props);
-    this.state = { imageUrl: 'https://www.wallpaperflare.com/static/550/819/826/glare-background-blur-dark-wallpaper.jpg', text: ''};
-  }
-
-  _onLoadPressed() {
-    this.setState({ imageUrl: this.state.text })
+  static navigationOptions =
+  {
+	  title: 'Image',
   };
 
   render() {
     return (
-      <ImageBackground
-        style={{
-          backgroundColor: '#000',
-          flex: 1,
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-          justifyContent: 'center',
-        }}
-        source={ {uri: this.state.imageUrl} }
-      >
-        <View style={styles.overlay}></View>
-        <View style={styles.container}>
-          <View style={styles.buttonContainer}>
-            <TextInput
-              style={styles.editText}
-              placeholderTextColor={'#ffffff'}
-              underlineColorAndroid={'#ff5722'}
-              returnKeyType={'next'}
-              placeholder="Enter image url"
-              onChangeText={(text) => this.setState({text})}
-            />
-          </View>
-          <View style={styles.buttonContainer}>
-            <TouchableHighlight
-              style={styles.button}
-              onPress={this._onLoadPressed.bind(this)}
-              underlayColor='#000' >
-                <Text style={[styles.buttonText]}>Load image</Text>
-            </TouchableHighlight>
-          </View>
-        </View>
-      </ImageBackground>
+      <View style={{padding: 10}}>
+         <TextInput
+          style={{height: 40}}
+          placeholder="Type here"
+          onChangeText={text => this.setState({text})}
+        />
+		<Button onPress={() => this.props.navigation.navigate('Second',  { text: this.state.text} )} title = 'SUBMIT'/>
+      </View>
     );
   }
 }
 
+class SecondScreen extends React.Component {
+
+	static navigationOptions =
+	{
+		title: 'Display Image',
+	};
+
+	render()
+	{
+
+		//const urll = this.props.navigation.state.params.text
+		return(
+		 <WebView
+        source={{uri: this.props.navigation.state.params.text}}
+        style={{marginTop: 20}}
+         />
+
+		//<View style = {styles.container}>
+			//<Image source={{uri: "http://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+		//</View>
+		);
+	}
+}
+
+export class ShowImageScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Image',
+  };
+  render() {
+    return <Hi />;
+  }
+}
+
+const Hi = createStackNavigator(
+  {
+  	First: FirstScreen,
+  	Second: SecondScreen,
+  },
+  {
+    initialRouteName: 'First',
+    navigationOptions: {
+       header: <Text style={{display:"none"}} ></Text>
+    },
+  }
+);
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
     justifyContent: 'center',
   },
-  overlay: {
-      backgroundColor:'#000000',
-      opacity: .5,
-      flex: 1,
-      position: 'absolute',
-      width: '100%',
-      height: '100%',
-      justifyContent: 'center',
+  button: {
+    backgroundColor: '#859a9b',
+    borderRadius: 20,
+    padding: 10,
+    marginBottom: 20,
+    shadowColor: '#303838',
+    shadowOffset: { width: 0, height: 5 },
+    shadowRadius: 10,
+    shadowOpacity: 0.35,
   },
-  editText: {
-    height: 60,
-    paddingLeft: 10,
-    paddingRight: 10,
-    marginLeft: 10,
-    marginRight: 10,
-    color: "#ffffff"
-  },
-  buttonContainer: {
-    margin: 20,
-  },
-  alternativeLayoutButtonContainer: {
-    margin: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  button:{
-    paddingTop:15,
-    paddingBottom:15,
-    backgroundColor:'#ff5722',
-    borderRadius:25,
-    borderWidth: 1,
-    borderColor: '#00000000'
-  },
-  buttonText:{
-      color:'#fff',
-      textAlign:'center',
-  }
-})
+});
