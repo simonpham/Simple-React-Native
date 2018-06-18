@@ -42,10 +42,10 @@ export class ShowImageScreen extends React.Component {
           </View>
           <View style={styles.buttonContainer}>
             <TouchableHighlight
-              style={styles.login}
+              style={styles.button}
               onPress={this._onLoadPressed.bind(this)}
               underlayColor='#000' >
-                <Text style={[styles.loginText]}>Login</Text>
+                <Text style={[styles.buttonText]}>Load image</Text>
             </TouchableHighlight>
           </View>
         </View>
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  login:{
+  button:{
     paddingTop:15,
     paddingBottom:15,
     backgroundColor:'#ff5722',
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#00000000'
   },
-  loginText:{
+  buttonText:{
       color:'#fff',
       textAlign:'center',
   }
