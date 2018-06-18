@@ -11,7 +11,7 @@ import {
   Text,
   View
 } from 'react-native';
-import Login from './OLoginScreen/login.js';
+import Login from './oLoginScreen/login.js';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +

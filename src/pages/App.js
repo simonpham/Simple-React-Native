@@ -5,6 +5,7 @@ import { createStackNavigator } from 'react-navigation';
 import { LoginScreen } from './LoginScreen.js'
 import { OLoginScreen } from './OLoginScreen.js'
 import { ShowImageScreen } from './ShowImageScreen.js'
+import { ProfileScreen } from './ProfileScreen.js'
 
 export class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -14,7 +15,6 @@ export class HomeScreen extends React.Component {
     return (
       <View style={ styles.buttonContainer }>
         <TouchableHighlight
-          ref={(btnLogin) => { this.btnLogin = btnLogin; }}
           style={ styles.button }
           onPress={ () => this.props.navigation.navigate('Login', {title: 'Login screen'}) }
           underlayColor='#000' >
@@ -22,7 +22,6 @@ export class HomeScreen extends React.Component {
         </TouchableHighlight>
 
         <TouchableHighlight
-          ref={(btnLogin) => { this.btnLogin = btnLogin; }}
           style={ styles.button }
           onPress={ () => this.props.navigation.navigate('OLogin', {title: 'Login screen'}) }
           underlayColor='#000' >
@@ -30,11 +29,17 @@ export class HomeScreen extends React.Component {
         </TouchableHighlight>
 
         <TouchableHighlight
-          ref={(btnLogin) => { this.btnLogin = btnLogin; }}
           style={ styles.button }
           onPress={ () => this.props.navigation.navigate('ShowImage', {title: 'Show image screen'}) }
           underlayColor='#000' >
             <Text style={ styles.buttonText }>[2nd day] Duy Show Image screen</Text>
+        </TouchableHighlight>
+
+        <TouchableHighlight
+          style={ styles.button }
+          onPress={ () => this.props.navigation.navigate('Profile', {title: 'Profile screen'}) }
+          underlayColor='#000' >
+            <Text style={ styles.buttonText }>[2nd day] Thang Profile screen</Text>
         </TouchableHighlight>
       </View>
     );
@@ -53,6 +58,7 @@ const RootStack = createStackNavigator(
     Login: LoginScreen,
     OLogin: OLoginScreen,
     ShowImage: ShowImageScreen,
+    Profile: ProfileScreen,
   },
   {
     initialRouteName: 'Home',
