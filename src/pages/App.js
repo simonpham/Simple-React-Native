@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, ImageBackground, TouchableHighlight, Alert, TextInput } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 
-import { LoginScreen } from './components/LoginScreen.js'
+import { LoginScreen } from './LoginScreen.js'
 
 export class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -16,7 +16,7 @@ export class HomeScreen extends React.Component {
           style={ styles.button }
           onPress={ () => this.props.navigation.navigate('Login', {title: 'Login screen'}) }
           underlayColor='#000' >
-            <Text style={ styles.buttonText }>Go to Login screen</Text>
+            <Text style={ styles.buttonText }>[1st day] Simon login screen</Text>
         </TouchableHighlight>
       </View>
     );
