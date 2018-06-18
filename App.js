@@ -1,40 +1,29 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, ImageBackground, TouchableHighlight, Alert, TextInput } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 
 const bgImage = 'https://www.wallpaperflare.com/static/550/819/826/glare-background-blur-dark-wallpaper.jpg'
 
-const RootStack = createStackNavigator(
-  {
-    Home: HomeScreen,
-    Login: LoginScreen,
-  },
-  {
-    initialRouteName: 'Home',
-  }
-);
-
-export default class App extends React.Component {
-  render() {
-    return <RootStack />;
-  }
-}
-
 export class HomeScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Home',
+  };
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home Screen</Text>
         <Button
           title="Go to Login screen"
-          onPress={() => this.props.navigation.navigate('Login')}
+          onPress={() => this.props.navigation.navigate('Login', {title: 'Login screen'})}
         />
       </View>
     );
   }
 }
 
-export class LoginScreen extends Component {
+export class LoginScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Login',
+  };
   constructor(props) {
     super(props);
     this.state = {username: '', password: ''};
@@ -124,7 +113,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     marginLeft: 10,
     marginRight: 10,
-    color: "#ffffff"
+    color: "#ffffff",
   },
   buttonContainer: {
     margin: 20,
@@ -132,7 +121,7 @@ const styles = StyleSheet.create({
   alternativeLayoutButtonContainer: {
     margin: 20,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   login:{
     paddingTop:15,
@@ -140,10 +129,26 @@ const styles = StyleSheet.create({
     backgroundColor:'#ff5722',
     borderRadius:25,
     borderWidth: 1,
-    borderColor: '#00000000'
+    borderColor: '#00000000',
   },
   loginText:{
       color:'#fff',
       textAlign:'center',
   },
 });
+
+export default class App extends React.Component {
+  render() {
+    return <RootStack />;
+  }
+}
+
+const RootStack = createStackNavigator(
+  {
+    Home: HomeScreen,
+    Login: LoginScreen,
+  },
+  {
+    initialRouteName: 'Home',
+  }
+);
