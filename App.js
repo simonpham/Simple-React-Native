@@ -5,7 +5,7 @@ import { StackNavigator } from 'react-navigation';
 class PizzaTranslator extends Component {
   constructor(props) {
     super(props);
-    this.state = {text: 'http://facebook.github.io/react-native/img/favicon.png'};
+    this.state = {text: 'Type the image URL'};
   }
 }
 
@@ -23,8 +23,14 @@ class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button onPress={ this.OpenSecondActivityFunction } title = 'Click me'/>
-          
+	  
+        //<Button onPress={ this.OpenSecondActivityFunction } title = 'Click me'/>
+         <TextInput
+          style={{height: 40}}
+          //placeholder="Type here to translate!"
+          onChangeText={(text) => this.setState({text}) => this.props.navigation.navigate({text});
+		  value = {this.state.text};
+        />
       
         <Text>We are just getting started</Text>
       </View>
@@ -34,6 +40,7 @@ class App extends Component {
 
 class second extends Component
 {
+	const urll = navigation.getParam({text});
 	static navigationOptions = 
 	{
 		title: 'Display Image',
@@ -42,9 +49,14 @@ class second extends Component
 	render()
 	{
 		return(
-		<View style = {styles.container}>
-			<Image source={{uri: "http://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
-		</View>
+		 <WebView
+        source={{uri: urll}}
+        style={{marginTop: 20}}
+         />
+
+		//<View style = {styles.container}>
+			//<Image source={{uri: "http://facebook.github.io/react-native/img/favicon.png", width: 64, height: 64}} />
+		//</View>
 		);
 	}
 }
