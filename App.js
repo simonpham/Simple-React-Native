@@ -1,46 +1,35 @@
 import React, {Component} from 'react';
-import { AppRegistry, StyleSheet, Text, TextInput, View, Image, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Image, TouchableOpacity, Button, WebView } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
-class PizzaTranslator extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {text: 'Type the image URL'};
-  }
-}
-
 class App extends Component {
-	 
+  //constructor(props) {
+    //super(props);
+    //this.state = {text: 'Type the image URL'};
+  //}
+  state = {text: ''};
+  
   static navigationOptions = 
   {
 	  title: 'Image',
   };
-  OpenSecondActivityFunction = () =>
-  {
-	  this.props.navigation.navigate('Second');
-  }
   
   render() {
     return (
-      <View style={styles.container}>
-	  
-        //<Button onPress={ this.OpenSecondActivityFunction } title = 'Click me'/>
+      <View style={{padding: 10}}>
          <TextInput
           style={{height: 40}}
-          //placeholder="Type here to translate!"
-          onChangeText={(text) => this.setState({text}) => this.props.navigation.navigate({text});
-		  value = {this.state.text};
+          placeholder="Type here"
+          onChangeText={text => this.setState({text})}
         />
-      
-        <Text>We are just getting started</Text>
+		<Button onPress={() => this.props.navigation.navigate('Second',  { text: this.state.text} )} title = 'SUBMIT'/>
       </View>
     );
   }
 }
 
-class second extends Component
-{
-	const urll = navigation.getParam({text});
+class SecondScreen extends Component {
+	
 	static navigationOptions = 
 	{
 		title: 'Display Image',
@@ -48,9 +37,11 @@ class second extends Component
 	
 	render()
 	{
+		
+		//const urll = this.props.navigation.state.params.text
 		return(
 		 <WebView
-        source={{uri: urll}}
+        source={{uri: this.props.navigation.state.params.text}}
         style={{marginTop: 20}}
          />
 
@@ -64,7 +55,7 @@ class second extends Component
 export default Hi = StackNavigator(
 {
 	First: { screen: App },
-	Second: {screen: second }
+	Second: { screen: SecondScreen }
 });
 
 const styles = StyleSheet.create({
