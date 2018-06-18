@@ -10,11 +10,26 @@ export class HomeScreen extends React.Component {
   };
   render() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Button
-          title="Go to Simon's Login screen"
-          onPress={() => this.props.navigation.navigate('Login', {title: 'Login screen'})}
-        />
+      <View style={{
+        margin: 20,
+      }}>
+        <TouchableHighlight
+          ref={(btnLogin) => { this.btnLogin = btnLogin; }}
+          style={{
+            paddingTop:15,
+            paddingBottom:15,
+            backgroundColor:'#ff5722',
+            borderRadius:25,
+            borderWidth: 1,
+            borderColor: '#00000000'
+          }}
+          onPress={ () => this.props.navigation.navigate('Login', {title: 'Login screen'}) }
+          underlayColor='#000' >
+            <Text style={{
+                color:'#fff',
+                textAlign:'center',
+            }}>Go to Login screen</Text>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -143,5 +158,14 @@ const RootStack = createStackNavigator(
   },
   {
     initialRouteName: 'Home',
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#ff5722',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    },
   }
 );
