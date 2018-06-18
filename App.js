@@ -4,12 +4,6 @@ import { createStackNavigator } from 'react-navigation';
 
 const bgImage = 'https://www.wallpaperflare.com/static/550/819/826/glare-background-blur-dark-wallpaper.jpg'
 
-export default class App extends React.Component {
-  render() {
-    return <RootStack />;
-  }
-}
-
 const RootStack = createStackNavigator(
   {
     Home: HomeScreen,
